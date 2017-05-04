@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="common.css">
+	<style>
+		body {
+			width: 400px;
+			margin: 30px auto;
+		}
+
+		.w {
+			width: 500px;
+			margin: auto;
+		}
+
+		.box {
+
+		}
+
+		input {
+			display: block;
+			width: 400px;
+			height: 30px;
+			border: 1px solid #a7abff;
+			border-radius: 4px;
+			font-size: 20px;
+			text-align: center;
+			color: #04ff99;
+		}
+
+		button {
+			display: block;
+			width: 404px;
+			height: 40px;
+			background: #a3adff;
+			border-radius: 4px;
+			font-size: 16px;
+			margin: 20px 0;
+		}
+
+		button:hover {
+			background: #7684ff;
+		}
+
+		table {
+			margin-top: 20px;
+		}
+
+		table tr td,
+		tr th {
+			width: 134px;
+			height: 60px;
+			border: 1px solid #a1d5ff;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+<div class="w">
+	<input type="text">
+	<button>搜索</button>
+	<div class="box"></div>
+	<table>
+		<thead>
+			<tr>
+				<th>歌手</th>
+				<th>歌名</th>
+				<th>专辑</th>
+			</tr>
+		</thead>
+	</table>
+</div>
+<script>
+
+	var table = document.getElementsByTagName('table')[0];
+	(function setScript() {
+		var txt1 = document.getElementsByTagName('input')[0];
+		var btn = document.getElementsByTagName('button')[0];
+		btn.addEventListener('click', function () {
+			if (txt1.value == '') {
+				return;
+			}
+			var script = document.createElement('script');
+			var type = document.createAttribute('type');
+			script.setAttribute('type', 'text/javascript');
+			script.setAttribute('src', 'http://tingapi.ting.baidu.com/v1/restserver/ting?callback=myCallback&query=' + txt1.value + '&page_size=30&page_no=1&method=baidu.ting.search.common')
+			var removeScript = document.body.lastElementChild;
+			document.body.removeChild(removeScript);
+			for (var i = 2; i < table.childNodes.length; i++) {
+				if (table.childNodes[i].nodeType == 1) {
+					table.removeChild(table.childNodes[i]);
+				}
+			}
+			document.body.appendChild(script);
+		})
+	})();
+
+
+	var box = document.getElementsByClassName('box')[0];
+	function myCallback(perSong) {
+		var query = perSong.query;
+		console.log(perSong);
+		for (var i in perSong.song_list) {
+			var songList = perSong.song_list[i].title;
+			var zhuanji = (perSong.song_list)[i].album_title;
+			box.innerHTML = '共搜索到' + perSong.pages.total + '个结果';
+			table.innerHTML += '\
+					<tr>\
+				<td>' + query + '</td>\
+				<td>' + songList + '</td>\
+				<td>' + zhuanji + '</td>\
+				</tr>'
+		}
+	}
+</script>
+<script type="text/javascript"
+		src="http://tingapi.ting.baidu.com/v1/restserver/ting?callback=myCallback&query=%E5%AD%99%E7%87%95%E5%A7%BF&page_size=30&page_no=1&method=baidu.ting.search.common"></script>
+</body>
+</html>

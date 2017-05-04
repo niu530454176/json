@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        div {margin: 10px; padding: 10px; border: 1px solid blue;}
+    </style>
+</head>
+<body>
+获取不同文件，加载到DOM
+<div id="text">Text will be here</div>
+<div id="html">HTML will be here</div>
+<div id="xml">XML will be here</div>
+
+<script type="text/javascript">
+/*    function getXHR() {
+        var xhr;
+        if (window.XMLHttpRequest) {
+            xhr = new XMLHttpRequest();
+        } else {
+            xhr = new ActiveXObject('Microsoft.XMLHttp');
+        }
+        return xhr;
+    }
+
+
+    function request(filename, callback) {
+        var xhr = getXHR();
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                callback(xhr);
+            }
+        };
+        xhr.open('GET', filename, true);
+        xhr.send();
+    }
+
+
+//    下面三个不一定是谁写在前面不一定谁是最快的
+    request('content.txt', function (o) {
+        document.getElementById('text').innerHTML = o.responseText;
+    });
+
+    request('content.html', function (o) {
+        document.getElementById('html').innerHTML = o.responseText;
+    });
+
+    request('content.xml', function (o) {
+        var xml = o.responseXML.documentElement;
+        var cds = xml.getElementsByTagName("CD");
+        for(var i = 0; i < cds.length; i++) {
+            var childNodes = cds[i].childNodes;
+            for(var j = 0; j < childNodes.length; j++) {
+                if(childNodes[j].nodeType == 1) {
+                    console.log(childNodes[j].tagName + ":" + childNodes[j].firstChild.nodeValue);
+                }
+            }
+        }*/
+
+//        document.getElementById('xml').innerHTML
+//        document.getElementById('xml').innerHTML = o.responseXML.getElementsByTagName('root')[0].firstChild.nodeValue;
+//    });
+/*function getXHR() {
+	var xhr;
+	if (window.XMLHttpRequest) {
+		xhr = new XMLHttpRequest();
+	} else {
+		xhr = new ActiveXObject('Microsoft.XMLHttp');
+	}
+	return xhr;
+}
+
+
+function request(filename, callback) {
+	var xhr = getXHR();
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			callback(xhr);
+		}
+	};
+	xhr.open('get', filename , true);
+	xhr.send();
+}*/
+
+/*request('http://www.mocky.io/v2/590827a7250000150559e78d', function (xhr) {//必须同源
+    xhr.getAllResponseHeaders();
+	console.log(xhr.getResponseHeader('Date'));
+	var data  = JSON.parse(xhr.responseText);//解析JSON格式的响应文本为js对象
+	console.log(data);
+	var breakfast = data.breakfast_menu;
+	for (var i in breakfast) {
+		console.log(breakfast[i].name);
+	}
+});*/
+
+
+/*request('http://www.mocky.io/v2/590827a7250000150559e78d', function (xhr) {//必须同源
+	xhr.getAllResponseHeaders();
+	console.log(xhr.getResponseHeader('Date'));
+	var data = JSON.parse(xhr.responseText);//解析JSON格式的响应文本为js对象
+    var url = data.url
+	console.log('@@@');
+});*/
+
+function kk(da) {
+	console.log(da);
+}
+
+</script>
+<script type="javascript" src="http://www.mocky.io/v2/58134d781000001c05abafb1?callback=kk"></script>
+</body>
+</html>

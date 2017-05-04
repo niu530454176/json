@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+	//jsonp直接跨域
+	function kk(data) {
+		for (var i in data.breakfast_menu) {
+			console.log(data.breakfast_menu[i]);
+		}
+	}
+</script>
+
+
+<script type="text/javascript" src="http://www.mocky.io/v2/59083640250000220659e7b7?callback=kk"></script>
+</body>
+</html>

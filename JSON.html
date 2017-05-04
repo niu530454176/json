@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<script>
+
+	//	获取json字符串的方法
+	var str = '{\
+		"breakfast_menu": [\
+			{\
+				"name": "Belgian Waffles",\
+				"price": "$5.95",\
+				"description": "two of our famous Belgian Waffles with plenty of real maple syrup",\
+				"calories": 650\
+			},\
+			{\
+				"name": "Strawberry Belgian Waffles",\
+				"price": "$7.95",\
+				"description": "light Belgian waffles covered with strawberries and whipped cream",\
+				"calories": 900\
+			},\
+			{\
+				"name": "Berry-Berry Belgian Waffles",\
+				"price": "$8.95",\
+				"description": "light Belgian waffles covered with an assortment of fresh berries and whipped cream",\
+				"calories": 900\
+			},\
+			{\
+				"name": "French Toast",\
+				"price": "$4.50",\
+				"description": "thick slices made from our homemade sourdough bread",\
+				"calories": 600\
+			},\
+			{\
+				"name": "Homestyle Breakfast",\
+				"price": "$6.95",\
+				"description": "two eggs, bacon or sausage, toast, and our ever-popular hash browns",\
+				"calories": 950\
+			}\
+		]\
+	}';
+
+	//处理json字符串的方法
+/*	var obj = JSON.parse(str);
+	console.log(obj);
+	var breakfastMenu = obj.breakfast_menu;
+	for (var i in breakfastMenu) {
+		var food = breakfastMenu[i];
+		console.log(food.name);
+	}*/
+
+/*	var xhr = new XMLHttpRequest();
+	console.log(xhr.readyState);
+//	xhr.readyState//在什么状态
+	xhr.onreadystatechange = function () {
+		console.log(xhr.readyState);
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			console.log(xhr.responseText);
+		}
+	};
+	xhr.open('post', 'file.txt', true);
+	xhr.send();*/
+
+/*	var shr = new XMLHttpRequest();
+	console.log(shr.readyState);
+	shr.onreadystatechange = function () {
+		console.log(shr.readyState);
+		if (shr.readyState == 4 && shr.status == 200) {
+//			console.log(shr.responseText);
+//			console.log(shr.responseXML);//如果获取的是XML文件则输出xml文件
+			var doc = shr.responseXML;
+			var names = doc.getElementsByTagName('name');
+			for (var i = 0; i < names.length; i++) {
+				console.log(names[i].innerHTML);
+			}
+		}
+	}
+	shr.open('get','xml.xml', true);
+	shr.send();*/
+
+	var xhr = new XMLHttpRequest();
+	console.log(xhr.readyState);
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+//			var header = xhr.getAllResponseHeaders();//获取响应头信息
+//			var server = xhr.getResponseHeader('server');
+//			console.log(header);
+			console.log(xhr.responseText);
+//			console.log(xhr.readyState);
+		}
+	};
+	xhr.open('post', 'http://192.168.2.103:8080/postform', true);//先打开后传输
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send('name=6');
+
+/*	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var doc = xhr.responseXML;
+			var foods = doc.getElementsByTagName('food');
+			for(var i = 0; i < foods.length; i++) {
+				var food = foods[i];
+				for(var j = 0; j < food.childNodes.length; j++) {
+					var dom = food.childNodes[j];
+					if(dom.nodeType == 1) {
+						console.log(dom.tagName + ":" + dom.innerHTML);
+					}
+				}
+			}
+		}
+	};
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.open('post', 'http://192.168.2.103:8080/postform', true);
+	xhr.send();*/
+
+/*	function getXHR() {
+		var xhr;
+		if (window.XMLHttpRequest) {
+			xhr = new XMLHttpRequest();
+		} else {
+			xhr = new ActiveXObject('microsoft.XMLHTTP');
+		}
+		return xhr;
+	}*/
+</script>
+</body>
+</html>

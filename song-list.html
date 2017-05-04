@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<input type="text" placeholder="请输入歌手" id="singer">
+<button id="search">搜索</button>
+<table class="table table-hover" style="width: 500px">
+	<thead>
+		<tr>
+			<th>歌名</th>
+			<th>歌手</th>
+			<th>专辑</th>
+		</tr>
+	</thead>
+	<tbody id="song-list">
+	</tbody>
+</table>
+<script>
+	var search = document.getElementById('search');
+	var singer = document.getElementById('singer');
+	var table = document.getElementsByTagName('table')[0];
+	var songList = document.getElementById('song-list');
+
+	search.addEventListener('click', function () {
+		singS(singer.value);
+		singer.value = '';
+	});
+	function singS(singer) {
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = "http://tingapi.ting.baidu.com/v1/restserver/ting?callback=myCallback&page_size=40&page_no=1&method=baidu.ting.search.common&query=" + singer;
+		document.getElementsByTagName('head')[0].appendChild(script);
+	}
+	function myCallback(data) {
+		var str = '';
+		var list = data.song_list;
+		for (var i = 0; i < list.length; i++) {
+			str += "<tr><td>" + list[i].title + "</td>" + "<td>" + list[i].author + "</td>" + "<td>" + list[i].album_title + "</td></tr>";
+		}
+		songList.innerHTML = str;
+	}
+
+</script>
+</body>
+</html>
