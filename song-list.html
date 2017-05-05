@@ -46,6 +46,32 @@
 		songList.innerHTML = str;
 	}
 
+
+//	获取cookieuserID的值
+/*	var strCookie = document.cookie;
+	var arrCookie = strCookie.split("; ");
+	var userId;
+	for (var i = 0; i < arrCookie.length; i++) {
+		var arr = arrCookie[i].split("=");
+		if ("userId" == arr[0]) {
+			userId = arr[1];
+			break;
+		}
+	}
+	alert(userId);*/
+
+/*	var date = new Date();
+	var expiresDays = 10;
+	date.setTime(date.getTime() + expiresDays*24*36*1000);
+	document.cookie = "userId=828;expires=" + date.toGMTString()
+	"userId=828;expires=Thu, 04 May 2017 05:32:44 GMT"*/
+
+	var date = new Date();
+	var Day = date.setDate(date.getDate() + 10);
+	document.cookie = "userId=828;expires=" + Day.toGMTString();
+
+
+
 </script>
 </body>
 </html>

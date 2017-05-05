@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<br>
+<input id="inputname" type="text" name="item" value=""></br>
+<button id="search">搜索</button>
+<table></table>
+<script>
+	var inputname = document.getElementById('inputname');
+	var search = document.getElementById('search');
+	var myTable = document.getElementsByTagName('table')[0];
+	search.addEventListener("click", function () {
+		var skuStr = inputname.value;
+		createJSONP(skuStr);
+	});
+
+	function createJSONP(skuStr) {
+		var jsonp = document.createElement("script");
+		jsonp.type = "text/javascript";
+		jsonp.src = "http://tingapi.ting.baidu.com/v1/restserver/ting?callback=myCallback&page_size=30&page_no=1&method=baidu.ting.search.common&qq-pf-to=pcqq.group&query=" + skuStr;
+		document.getElementsByTagName("head")[0].appendChild(jsonp);
+	}
+
+	function myCallback(data) {
+		var htmlStr = '<tr><th>歌曲名</th><th>专辑名</th></tr>';
+		var songList = data.song_list;
+		for (var i in songList) {
+			htmlStr += '<tr>' + '<td>' + songList[i].title + '</td>' + '<td>' + songList[i].album_title + '</td>' + '</tr>';
+		}
+		myTable.innerHTML = htmlStr;
+	}
+</script>
+</body>
+</html>
